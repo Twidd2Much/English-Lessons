@@ -1,1 +1,74 @@
-Lesson content for restaurant (placeholder)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>At the Restaurant</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f2f2f2; }
+    h2 { text-align: center; }
+    .lesson { max-width: 500px; margin: auto; background: white; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+    .line { margin: 15px 0; }
+    .audio-btn { margin-left: 10px; cursor: pointer; }
+    .quiz { margin-top: 20px; }
+    .btn { padding: 10px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; background-color: #007BFF; color: white; }
+    .btn:hover { background-color: #0056b3; }
+    .lao { display: none; font-size: 0.9em; color: #666; margin-top: 5px; }
+    .toggle { color: #007BFF; cursor: pointer; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <div class="lesson">
+    <h2>🍽️ At the Restaurant</h2>
+    
+    <div class="line">
+      <strong>Waiter:</strong> Hello, how many people are there in your party?
+      <button class="audio-btn" onclick="speak('Hello, how many people are there in your party?')">🔊</button>
+      <div class="lao">ສະບາຍດີ, ມີຄົນຫົວຫນ້າກັບຄຸນຫຼາຍເທົາ?</div>
+    </div>
+    
+    <div class="line">
+      <strong>Customer:</strong> Just two, please.
+      <button class="audio-btn" onclick="speak('Just two, please.')">🔊</button>
+      <div class="lao">ມີສອງຄົນຫຼາຍເທົາ.</div>
+    </div>
+    
+    <div class="line">
+      <strong>Waiter:</strong> This way, please.
+      <button class="audio-btn" onclick="speak('This way, please.')">🔊</button>
+      <div class="lao">ທາງນີ້, ກະລຸນາ.</div>
+    </div>
+    
+    <div class="toggle" onclick="toggleLao()">🔁 Show/Hide Lao Translation</div>
+    
+    <div class="quiz">
+      <h3>🧠 Quiz: What did the waiter ask?</h3>
+      <button class="btn" onclick="checkAnswer('party')">How many in your party?</button>
+      <button class="btn" onclick="checkAnswer('table')">Where do you want to sit?</button>
+      <div id="quiz-result"></div>
+    </div>
+  </div>
+  <script>
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utter);
+    }
+    
+    function toggleLao() {
+      document.querySelectorAll('.lao').forEach(el => {
+        el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+    
+    function checkAnswer(answer) {
+      const result = document.getElementById('quiz-result');
+      if (answer === 'party') {
+        result.innerHTML = '<span style="color: green;">✅ Correct!</span>';
+      } else {
+        result.innerHTML = '<span style="color: red;">❌ Try again!</span>';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,1 +1,74 @@
-Lesson content for grocery store (placeholder)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>At the Grocery Store</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f2f2f2; }
+    h2 { text-align: center; }
+    .lesson { max-width: 500px; margin: auto; background: white; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+    .line { margin: 15px 0; }
+    .audio-btn { margin-left: 10px; cursor: pointer; }
+    .quiz { margin-top: 20px; }
+    .btn { padding: 10px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; background-color: #007BFF; color: white; }
+    .btn:hover { background-color: #0056b3; }
+    .lao { display: none; font-size: 0.9em; color: #666; margin-top: 5px; }
+    .toggle { color: #007BFF; cursor: pointer; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <div class="lesson">
+    <h2>🛒 At the Grocery Store</h2>
+    
+    <div class="line">
+      <strong>Cashier:</strong> Hello! Do you need a bag?
+      <button class="audio-btn" onclick="speak('Hello! Do you need a bag?')">🔊</button>
+      <div class="lao">ສະບາຍດີ! ເຈົ້າຕ້ອງການຖົງບໍ?</div>
+    </div>
+    
+    <div class="line">
+      <strong>Customer:</strong> Yes, please.
+      <button class="audio-btn" onclick="speak('Yes, please.')">🔊</button>
+      <div class="lao">ແມ່ນແລ້ວ, ຂໍຂອບໃຈ.</div>
+    </div>
+    
+    <div class="line">
+      <strong>Cashier:</strong> That will be five dollars.
+      <button class="audio-btn" onclick="speak('That will be five dollars.')">🔊</button>
+      <div class="lao">ນັ້ນຈະເປັນຫ້າໂດລາ.</div>
+    </div>
+    
+    <div class="toggle" onclick="toggleLao()">🔁 Show/Hide Lao Translation</div>
+    
+    <div class="quiz">
+      <h3>🧠 Quiz: What did the cashier say?</h3>
+      <button class="btn" onclick="checkAnswer('bag')">Do you need a bag?</button>
+      <button class="btn" onclick="checkAnswer('money')">Do you have money?</button>
+      <div id="quiz-result"></div>
+    </div>
+  </div>
+  <script>
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utter);
+    }
+    
+    function toggleLao() {
+      document.querySelectorAll('.lao').forEach(el => {
+        el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+    
+    function checkAnswer(answer) {
+      const result = document.getElementById('quiz-result');
+      if (answer === 'bag') {
+        result.innerHTML = '<span style="color: green;">✅ Correct!</span>';
+      } else {
+        result.innerHTML = '<span style="color: red;">❌ Try again!</span>';
+      }
+    }
+  </script>
+</body>
+</html>
